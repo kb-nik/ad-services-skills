@@ -1,0 +1,4 @@
+interface:
+  display_name: "A/D Service Digger"
+  short_description: "Analyze attack-defense services fast"
+  default_prompt: "Use $ad-service-digger to analyze this attack-defense service, map how flags flow through it, and propose exploit and fix paths by category."
