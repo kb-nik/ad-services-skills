@@ -113,6 +113,7 @@ Start with:
 - protocol discovery
 - strings and syscall surface
 - file-read or role-flip primitive
+- if memory corruption is already visible, pivot into [pwn.md](pwn.md) after the first reverse pass
 
 Read:
 
@@ -130,6 +131,7 @@ Start with:
 - trust boundary between web tier and sidecar
 - exact data passed to the sidecar
 - source/live mismatch
+- only switch to [pwn.md](pwn.md) if the exploit really depends on native corruption rather than request forgery or auth confusion
 
 Read:
 
@@ -182,4 +184,5 @@ Ask these early:
 - `web` first for CRUD and UI-heavy tasks
 - `protocols-and-storage` first for S3/Kafka/SSH/internal jobs
 - `reverse` first for binary and obfuscated components
+- `pwn` after `reverse` when the binary is understood and the remaining task is reliable exploitation of a memory-corruption primitive
 - `defense` once you already have a concrete exploit path or a live incident

@@ -113,6 +113,7 @@
 - protocol discovery
 - strings и syscall surface
 - primitive вроде file-read или role-flip
+- если memory corruption уже видна, после первого reverse-pass переключаться в `pwn.ru.md`
 
 Основной файл:
 
@@ -130,6 +131,7 @@
 - trust boundary между web tier и sidecar
 - точные данные, которые web tier отдаёт в sidecar
 - source/live mismatch
+- в `pwn.ru.md` переключаться только если exploit реально держится на native corruption, а не на request forgery или auth confusion
 
 Основные файлы:
 
@@ -182,4 +184,5 @@
 - `web` сначала для CRUD и UI-heavy задач
 - `protocols-and-storage` сначала для S3/Kafka/SSH/internal jobs
 - `reverse` сначала для бинарных и обфусцированных компонентов
+- `pwn` после `reverse`, когда бинарь уже понятен и остаётся надёжно разыграть memory-corruption primitive
 - `defense` после того, как уже есть конкретный exploit path или live incident

@@ -22,10 +22,12 @@ The goal is to answer five questions quickly:
    - HTTP/UI/API heavy service: read [references/web.md](references/web.md)
    - S3, Kafka, SSH, queues, internal workers, custom protocols: read [references/protocols-and-storage.md](references/protocols-and-storage.md)
    - ELF, `.so`, `i64`, obfuscated sidecar, emulator, crypto challenge: read [references/reverse.md](references/reverse.md)
+   - native memory-corruption path, crash triage, exploit-direction work: read [references/pwn.md](references/pwn.md) after [references/reverse.md](references/reverse.md)
 4. Read [references/questions.md](references/questions.md) if you need a universal question set for an unfamiliar service.
 5. Read [references/operations.md](references/operations.md) when the task includes active rounds, flag theft, preflight, service health, exploit farming, or incident response.
-6. If the task includes patching or validating fixes, also read [references/defense.md](references/defense.md).
-7. If you need examples of patterns that appeared in real A/D digs, read [references/case-studies.md](references/case-studies.md). Treat them as examples, not as an exhaustive service list.
+6. Read [references/handoff.md](references/handoff.md) when one agent is digging the service and another agent will later write the exploit or patch from a structured artifact.
+7. If the task includes patching or validating fixes, also read [references/defense.md](references/defense.md).
+8. If you need examples of patterns that appeared in real A/D digs, read [references/case-studies.md](references/case-studies.md). Treat them as examples, not as an exhaustive service list.
 
 ## Operating Rules
 
@@ -46,6 +48,8 @@ Produce results in this order unless the user asks differently:
 4. Exploit strategy or proof outline
 5. Minimal hardening plan
 6. Regression checks that protect checker SLA
+
+When handing off to another agent, also produce a structured handoff file using the template in `assets/templates/service-handoff.md`.
 
 ## Common Priorities
 

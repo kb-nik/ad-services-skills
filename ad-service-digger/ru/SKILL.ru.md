@@ -17,10 +17,12 @@
    - HTTP/UI/API-heavy сервис: `references/web.ru.md`
    - S3, Kafka, SSH, очереди, внутренние воркеры, кастомные протоколы: `references/protocols-and-storage.ru.md`
    - ELF, `.so`, `i64`, обфусцированный sidecar, эмулятор, crypto/challenge: `references/reverse.ru.md`
+   - native memory-corruption path, crash triage или работа именно над направлением эксплуатации: `references/pwn.ru.md` после `references/reverse.ru.md`
 4. Если нужен универсальный набор вопросов к незнакомому сервису, открой `references/questions.ru.md`.
 5. Если задача уже идёт в рамках активного раунда, включает preflight, incident response, сервисное здоровье или exploit farming, прочитай `references/operations.ru.md`.
-6. Если задача включает фиксы или проверку защиты, прочитай `references/defense.ru.md`.
-7. Если нужны примеры паттернов из реальных A/D задач, прочитай `references/case-studies.ru.md`.
+6. Если один агент копает сервис, а другой потом будет писать сплойт или фикс, открой `references/handoff.ru.md`.
+7. Если задача включает фиксы или проверку защиты, прочитай `references/defense.ru.md`.
+8. Если нужны примеры паттернов из реальных A/D задач, прочитай `references/case-studies.ru.md`.
 
 ## Рабочие правила
 
@@ -41,6 +43,8 @@
 4. Стратегия эксплуатации или outline proof-of-concept
 5. Минимальный план hardening
 6. Регрессионные проверки, защищающие checker SLA
+
+Если результат должен пойти другой нейронке или другому человеку, дополнительно собери структурированный handoff-файл по шаблону `assets/templates/service-handoff.md`.
 
 ## Что проверять рано
 

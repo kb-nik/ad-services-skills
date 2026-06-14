@@ -18,7 +18,9 @@
 - `references/protocols-and-storage.ru.md` — брокеры, хранилища, SSH, воркеры
 - `references/reverse.ru.md` — бинарные и реверсные сервисы
 - `references/operations.ru.md` — live-round, preflight, incident mode, farm-ready validation
+- `references/handoff.ru.md` — как передавать раскопанный сервис другой нейронке или человеку
 - `references/defense.ru.md` — минимальные фиксы и SLA
 - `references/case-studies.ru.md` — паттерны из реальных кейсов
+- `../assets/templates/service-handoff.md` — шаблон handoff-файла
 
 Если нужно, можно читать русский набор как основную документацию, а английский держать как боевую версию для самой модели.
