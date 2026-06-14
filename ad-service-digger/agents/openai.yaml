@@ -1,4 +1,4 @@
 interface:
   display_name: "A/D Service Digger"
   short_description: "Analyze attack-defense services fast"
-  default_prompt: "Use $ad-service-digger to analyze this attack-defense service, map how flags flow through it, and propose exploit and fix paths by category."
+  default_prompt: "Use $ad-service-digger to analyze this attack-defense service in research mode first: complete static route/model/sink coverage before local validation, enumerate reviewed render sinks explicitly instead of saying 'XSS checked', require a sink verdict table with one row per reviewed sink or one explicit 'none found' row for web services, rank vulnerabilities, report exploit paths and weak config separately, use compact tables for findings/sinks/negative checks, do not patch unless I explicitly ask for fixes, and write the final report in the user's language including section headers, table titles, column names, and status labels."

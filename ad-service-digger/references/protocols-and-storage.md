@@ -45,6 +45,13 @@
 4. Inspect background jobs that bridge two trust zones.
 5. Compare user-facing permissions with worker-side permissions.
 
+Do not treat a published Mongo, Redis, broker, or admin port as a side note.
+If it is exposed, report it explicitly as one of:
+
+- direct finding
+- exploit amplifier
+- weak exposure with no proof yet
+
 ## Concrete Questions
 
 - Can a user influence an internal destination?

@@ -96,6 +96,87 @@ Before deeper analysis:
 6. Inspect frontend event handlers only after server handlers are mapped.
 7. Check alternate route forms, methods, encodings, and direct API access that bypass intended UI flows.
 
+## Static Coverage Gate Before Validation
+
+Do not start local validation just because two strong hypotheses already exist.
+For compact web services, finish this minimal static gate first:
+
+- auth routes fully read
+- object CRUD and list/detail routes fully read
+- model fields carrying ownership or flags identified
+- template sinks and `innerHTML`-style render sinks reviewed
+- obvious body/query to ORM lookup paths reviewed
+- each reviewed sink classified as escaped, partially escaped, or unescaped
+- compose or runtime port exposure reviewed for DB, Redis, broker, admin, or sidecar services
+- secret sources reviewed: session secret, JWT/HMAC key, default creds, permissive env fallback
+
+Only after that say the context is sufficient for local validation.
+If the gate is incomplete, keep reading source instead of moving to Docker or runtime checks.
+
+## Secret And Internal Surface Checks
+
+Do not leave these implicit.
+For small web stacks, explicitly report:
+
+- session secret hardcoded or not
+- cookie flags weak or acceptable
+- JWT/HMAC/admin secrets present or absent
+- whether Mongo/Redis/broker/admin/sidecar ports are published
+- if a DB or broker is exposed, whether it appears usable as a direct exploit surface or only as an amplifier
+
+Even when nothing strong is found, say that these were checked.
+
+## Sink Review Rules
+
+When reviewing XSS or render issues:
+
+- enumerate the actual sinks
+- name the exact field reaching each sink
+- state whether escaping happens at the sink, before the sink, or not at all
+- treat string concatenation into `innerHTML` as suspicious until each interpolated field is checked
+- report the result as a sink verdict table with one row per reviewed sink
+- if there are no relevant template or frontend sinks, include one explicit `none found` row instead of dropping the section
+
+Do not collapse this into one sentence like "frontend XSS checked".
+That wording is too lossy and is exactly how real bugs get missed.
+
+## Coverage Pass For Small Web Services
+
+If the service is compact enough to read fully, do not stop at the first confirmed bug.
+Run a short residual checklist and report each item as `checked`, `confirmed`, or `not reviewed yet`:
+
+- login and register type confusion
+- ORM/operator injection through body or query objects
+- ownership on list, detail, and create-linked readback flows
+- enumeration via sequential IDs or public counters
+- hidden fields accepted by the API but not shown in the UI
+- session secret issues, but only after verifying whether the session store makes them exploitable or merely bad hygiene
+- strongest chain upgrade:
+  - can a path that currently needs a username become `no-username`?
+  - can a path that currently needs `flag_id` become `no-flag-id`?
+
+This pass is specifically meant to catch "the report is correct, but incomplete" failures.
+
+## How To Report Web Findings Cleanly
+
+For compact services, separate four buckets:
+
+- `confirmed finding`: directly exploitable bug or clearly flag-relevant weakness
+- `exploit amplifier`: public usernames, sequential IDs, leaked object names, predictable counters
+- `weak config`: real but lower-value security weakness such as weak cookie flags or hardcoded secrets with no immediate path yet
+- `checked but not promoted`: suspicious class reviewed but not confirmed enough to call it a finding
+
+This usually produces better reports than forcing everything into one severity list.
+
+Prefer tables for the final report:
+
+- findings table
+- sink inventory table
+- negative checks table
+
+For sink inventory, use one row per reviewed sink instead of one summary sentence.
+Keep section headers, table titles, column names, and short status labels in the user's language.
+
 ## Flag-Focused Questions
 
 - Which field likely stores the flag: note, answer, artifact, design note, resolution, callback response?

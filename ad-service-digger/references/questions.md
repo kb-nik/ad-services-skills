@@ -31,6 +31,7 @@ The goal is to force early clarity before you sink time into the wrong layer.
 
 - Which component has more privilege than the public interface?
 - Which component is assumed internal but is reachable?
+- Which DB, cache, broker, or admin port is published and reachable from outside?
 - Which headers, tokens, env vars, or helper ports are treated as trusted?
 - Which user-controlled values cross into file paths, queries, topics, repo names, or internal URLs?
 
@@ -40,6 +41,7 @@ The goal is to force early clarity before you sink time into the wrong layer.
 - Can the finding be confirmed on live, or only in source/local?
 - What observable side effect proves success: role change, returned secret, object visibility, worker output, log entry?
 - What evidence is missing right now?
+- Which high-value classes were checked and came back negative or weak-only?
 
 ## Exploitability
 

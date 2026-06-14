@@ -12,6 +12,7 @@
 ## Operating Mindset
 
 A strong source finding is not enough during a live round.
+Default to `source-first` reasoning when source exists, but delay live interaction until you have a ranked candidate list.
 Track four separate states:
 
 1. `source-suspected`
@@ -32,6 +33,16 @@ Use the strongest available evidence:
 - repeated multi-team farming success
 
 Explicitly label which level you have.
+
+Default progression:
+
+1. source reasoning
+2. local reproduction
+3. checker match
+4. live proof
+5. farming
+
+Do not skip straight from vague source suspicion to wide live probing unless incident pressure leaves no safer option.
 
 ## When Flags Are Being Stolen
 
@@ -103,6 +114,8 @@ Before calling something farm-ready, check:
 - graceful failure logging
 - stability after partial service degradation
 
+For packaging details after the path is confirmed, use [farm-packaging.md](farm-packaging.md).
+
 ## Traffic-Guided Reasoning
 
 If traffic or stream logs are available, use them to answer:
@@ -113,6 +126,7 @@ If traffic or stream logs are available, use them to answer:
 - whether the attacker cleans up artifacts after use
 
 Traffic often reveals the real exploit path faster than static review.
+For stricter leak versus echo classification, use [traffic-triage.md](traffic-triage.md).
 
 ## Patch Map
 
@@ -126,6 +140,15 @@ When defending under time pressure, build a patch map:
 - validation command or proof
 
 This helps avoid random edits and speeds rollback reasoning.
+
+## Live Commit Hygiene
+
+If a live code change must be committed or handed to teammates:
+
+- stage only intended files
+- never commit runtime data, DB files, uploads, logs, caches, or secrets
+- verify compose, syntax, and a minimal health check before calling the fix safe
+- prefer one service per commit, not one giant mixed live commit
 
 ## Reporting During The Round
 

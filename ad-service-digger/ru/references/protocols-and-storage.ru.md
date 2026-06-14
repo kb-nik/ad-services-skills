@@ -45,6 +45,13 @@
 4. Проверить background jobs, которые соединяют две trust zone.
 5. Сравнить user-facing permissions и worker-side permissions.
 
+Не считай опубликованный Mongo, Redis, broker или admin port побочной заметкой.
+Если он торчит наружу, явно рапортуй его как одно из:
+
+- direct finding
+- exploit amplifier
+- weak exposure без proof пока
+
 ## Конкретные вопросы
 
 - Может ли пользователь влиять на internal destination?
