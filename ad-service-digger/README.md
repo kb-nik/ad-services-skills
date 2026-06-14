@@ -1,65 +1,65 @@
 # ad-service-digger
 
-`ad-service-digger` is a reusable skill for analyzing unfamiliar attack-defense services and turning messy service material into a practical exploit or hardening plan.
+`ad-service-digger` - это переиспользуемый skill для анализа незнакомых attack-defense сервисов и превращения разрозненных материалов по сервису в практический план эксплуатации или защиты.
 
-The skill is built around a simple idea:
+В основе skill лежит простая схема:
 
-1. Reconstruct what the service does.
-2. Find where flags live and how the checker touches them.
-3. Map weak trust boundaries.
-4. Choose the fastest exploit direction.
-5. Propose the smallest safe fix that preserves checker SLA.
+1. Понять, что реально делает сервис.
+2. Найти, где лежат флаги и как к ним прикасается checker.
+3. Разметить слабые trust boundary.
+4. Выбрать самый быстрый вменяемый путь к эксплойту.
+5. Предложить минимальный безопасный фикс без поломки checker SLA.
 
-## What Is Inside
+## Что Внутри
 
-- `SKILL.md` - main English skill for the model
-- `agents/openai.yaml` - agent-facing configuration
-- `references/workflow.md` - default digging flow
-- `references/categories.md` - how to classify service types
-- `references/web.md` - web, HTTP, API, session, SSRF, IDOR, auth
-- `references/protocols-and-storage.md` - queues, brokers, storage, SSH, workers, sidecars
-- `references/reverse.md` - binaries, libraries, protocol reversing, crypto/state logic
-- `references/operations.md` - live rounds, validation, exploit farming, incident mode
-- `references/defense.md` - minimal fixes and SLA-safe patching
-- `references/handoff.md` - how to prepare a clean handoff for another agent or teammate
-- `references/case-studies.md` - recurring A/D patterns from real digs
-- `assets/templates/service-handoff.md` - structured handoff template
-- `ru/` - Russian mirror of the skill and reference materials
+- `SKILL.md` - основная английская версия skill для модели
+- `agents/openai.yaml` - конфигурация агента
+- `references/workflow.md` - базовый пайплайн копания
+- `references/categories.md` - как классифицировать тип сервиса
+- `references/web.md` - web, HTTP, API, auth, session, SSRF, IDOR
+- `references/protocols-and-storage.md` - очереди, брокеры, хранилища, SSH, воркеры, sidecar
+- `references/reverse.md` - бинарники, библиотеки, реверс протоколов, crypto/state logic
+- `references/operations.md` - live-round режим, валидация, farm, incident mode
+- `references/defense.md` - минимальные фиксы и патчинг с учетом SLA
+- `references/handoff.md` - как передать результаты другому агенту или тиммейту
+- `references/case-studies.md` - повторяющиеся A/D паттерны из реальных раскопок
+- `assets/templates/service-handoff.md` - шаблон структурированного handoff
+- `ru/` - русская зеркальная копия skill и справочных материалов
 
-## Quick Start
+## Быстрый Старт
 
-For the model:
+Для модели:
 
-1. Read `SKILL.md`.
-2. Read `references/workflow.md`.
-3. Classify the target with `references/categories.md`.
-4. Pick the right lens:
+1. Прочитать `SKILL.md`.
+2. Прочитать `references/workflow.md`.
+3. Классифицировать цель через `references/categories.md`.
+4. Выбрать нужную линзу:
    - `references/web.md`
    - `references/protocols-and-storage.md`
    - `references/reverse.md`
-5. Use `references/operations.md` and `references/defense.md` when the task shifts from digging to active exploitation or patching.
+5. Подключать `references/operations.md` и `references/defense.md`, когда задача переходит от копания к эксплуатации, фарму или фиксам.
 
-For humans:
+Для команды:
 
-1. Read `ru/SKILL.ru.md` if you want the Russian overview first.
-2. Use `ru/references/*.ru.md` as the team-readable mirror.
-3. If one person digs and another writes the exploit or fix, use the handoff flow in `references/handoff.md`.
+1. Начать с `ru/SKILL.ru.md`, если удобнее сначала читать по-русски.
+2. Использовать `ru/references/*.ru.md` как человекочитаемое зеркало.
+3. Если один человек копает сервис, а другой пишет эксплойт или фикс, использовать handoff-подход из `references/handoff.md`.
 
-## Recommended Output
+## Какой Результат Ожидается
 
-The default result shape is:
+Базовый формат результата такой:
 
-1. Architecture map and flag path
-2. Top exploit hypotheses
-3. Minimal validation plan
-4. Exploit strategy or proof outline
-5. Minimal hardening plan
-6. Regression checks for checker safety
+1. Карта архитектуры и путь флага
+2. Главные exploit hypothesis
+3. Минимальный план проверки
+4. Стратегия эксплуатации или proof outline
+5. Минимальный hardening plan
+6. Регрессионные проверки для безопасности checker
 
-If the work should be passed to someone else, also produce a structured handoff file from `assets/templates/service-handoff.md`.
+Если результат нужно передавать дальше, дополнительно стоит собирать структурированный handoff по шаблону `assets/templates/service-handoff.md`.
 
-## Language Notes
+## По Языкам
 
-- English files are the primary model-facing version.
-- Russian files are the team-facing mirror for easier review and onboarding.
-- The structure is intentionally kept close between both versions.
+- Английские файлы - основная версия для модели.
+- Русские файлы - версия для команды, ревью и онбординга.
+- Структура специально сделана почти одинаковой в обеих версиях, чтобы было легко сопоставлять материалы.
